@@ -50,8 +50,8 @@ prennent la peine de le faire trouvent souvent que l'écart est plus faible
 qu'annoncé.
 
 ```
-classe majoritaire sur le test    14,3 %
-hasard uniforme                    8,3 %
+classe majoritaire sur le test : 14,3 %
+hasard uniforme                :  8,3 %
 ```
 
 Voilà le plancher. Annoncer 85 % d'exactitude ne veut rien dire tant qu'on ne l'a

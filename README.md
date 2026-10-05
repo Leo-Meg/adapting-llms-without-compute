@@ -67,8 +67,8 @@ classic methodological gap.** That is what we did. Work that does take the troub
 to compute the baseline often finds the claimed gap is smaller than it looks.
 
 ```
-majority class on the test set    14.3 %
-uniform random                     8.3 %
+majority class on the test set : 14.3 %
+uniform random                 :  8.3 %
 ```
 
 **Three metrics give three readings of the same model.** Accuracy is dominated by

@@ -70,8 +70,8 @@ travaux qui prennent la peine de calculer la référence trouvent souvent que
 l'écart annoncé est plus faible qu'il n'y paraît.
 
 ```
-classe majoritaire sur le test    14,3 %
-hasard uniforme                    8,3 %
+classe majoritaire sur le test : 14,3 %
+hasard uniforme                :  8,3 %
 ```
 
 **Trois métriques donnent trois lectures du même modèle.** L'exactitude est dominée
