@@ -4,9 +4,8 @@ La référence à battre, calculée d'abord. Traits et régression logistique, �
 
 **Léo Mégret**, Master Linguistique Informatique, Université Paris Cité
 
-> **État du dépôt, version 1.** C'est la première étape d'un travail que je mène
-> par étapes, chacune dans son propre dossier. Seule la version 1 existe à ce
-> jour. Je publie au fur et à mesure plutôt qu'une fois tout terminé.
+> **État du dépôt, version 2.** Je mène ce travail par étapes, chacune dans son
+> propre dossier. Je publie au fur et à mesure plutôt qu'une fois tout terminé.
 
 ---
 
@@ -28,71 +27,34 @@ Je commence par ce que notre rendu ne contenait pas, la méthode simple.
 
 ---
 
-## Ce qui existe aujourd'hui
+## Les versions publiées
 
-### Version 1, la référence à battre. Traits et régression logistique
+| | Dossier | Contenu | Tests |
+|---|---|---|---:|
+| **1** | `1.adaptation_python_projet` | La référence à battre, traits et régression logistique | 26 |
+| **2** | `2.adaptation_python_projet` | Apprentissage par transfert, trois régimes | 14 |
 
-Avant de parler de LoRA ou d'apprentissage en contexte, je calcule ce que donne la
-méthode simple sur la même tâche. C'est le chiffre que mon rendu de M2 ne
-calculait pas, et sans lui les autres ne veulent rien dire.
-
-| Fichier | Ce que j'y fais |
-|---|---|
-| `src/donnees.py` | 122 définitions de dictionnaire réparties en 12 classes sémantiques, hiérarchie supersense vers hypersense, découpage stratifié, distance hiérarchique. |
-| `src/traits.py` | Extracteur de traits activables par famille, sac de mots, premier mot, longueur, suffixes. Régression logistique multinomiale en NumPy, et trois métriques dont une hiérarchique. |
-| `tests/test_traits.py` | 26 tests. |
-
-Origine universitaire. TP n°1 de *Machine Learning 2* (M1), et TP n°1 de *Machine
-Learning for NLP 3* (Marie Candito, M2) avec Haeeul Hwang, où il s'agissait de
-classer des définitions du Wiktionnaire en supersenses, en comparant un
-fine-tuning LoRA de FlauBERT à de l'apprentissage en contexte avec Qwen2.5-3B.
+Soit **40 tests** au total. Chaque dossier contient tout le contenu du
+précédent, plus une étape.
 
 ---
 
-## Lancer le code
+## Lancer la dernière version
 
 ```bash
-cd 1.adaptation_python_projet
-python -m src.donnees
-python -m src.traits
-python -m tests.test_traits
+cd 2.adaptation_python_projet
+python -m src.transfert
+python -m tests.test_transfert
 ```
-
-NumPy suffit.
-
----
-
-## Ce que je retiens de cette étape
-
-**Comparer deux méthodes modernes sans vérifier qu'elles battent la méthode simple
-est une lacune méthodologique classique.** C'est ce que nous avions fait. Les
-travaux qui prennent la peine de calculer la référence trouvent souvent que
-l'écart annoncé est plus faible qu'il n'y paraît.
-
-```
-classe majoritaire sur le test : 14,3 %
-hasard uniforme                :  8,3 %
-```
-
-**Trois métriques donnent trois lectures du même modèle.** L'exactitude est dominée
-par les classes fréquentes. Le F1 macro punit un modèle qui ignore les classes
-rares. La métrique hiérarchique distingue une erreur proche d'une erreur absurde.
-
-**Le découpage doit être stratifié.** Avec 8 exemples pour la classe `temps`, un
-découpage aléatoire global peut produire un test sans aucun exemple de cette
-classe, et son score devient indéfini.
 
 ---
 
 ## Ce qui reste ouvert
 
-La courbe d'apprentissage est encore ascendante à 80 exemples. Ce n'est pas le
-modèle qui plafonne, c'est la quantité de données.
+Les représentations gelées coûtent 396 paramètres et plafonnent à 0,279. Le
+fine-tuning complet en coûte 24 492 pour atteindre 0,407.
 
-J'ai maintenant le chiffre de référence qui manquait à mon rendu de M2. Ce que je
-n'ai pas, c'est de quoi le comparer. Tant que je n'ai pas mesuré une méthode qui
-réutilise une connaissance acquise ailleurs, je ne sais pas ce que ce 14,3 %
-vaut.
+Entre les deux, je ne connais aucun régime intermédiaire.
 
 ---
 
@@ -116,6 +78,8 @@ correct.
 que j'attendais, j'écris ce que j'ai trouvé.
 
 **Le code est commenté en français.**
+
+---
 
 ---
 

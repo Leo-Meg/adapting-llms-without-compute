@@ -4,9 +4,8 @@ The baseline to beat, computed first. Features and logistic regression, written 
 
 **Léo Mégret**, MSc Computational Linguistics, Université Paris Cité
 
-> **Repository status, version 1.** This is the first step of work I am doing in
-> stages, each in its own folder. Only version 1 exists so far. I publish as I go
-> rather than once everything is finished.
+> **Repository status, version 2.** I am doing this work in stages, each in its
+> own folder. I publish as I go rather than once everything is finished.
 
 ---
 
@@ -26,69 +25,34 @@ I start with what our submission did not contain, the simple method.
 
 ---
 
-## What exists today
+## Published versions
 
-### Version 1, the baseline to beat. Features and logistic regression
+| | Folder | Contents | Tests |
+|---|---|---|---:|
+| **1** | `1.adaptation_python_projet` | The baseline to beat, features and logistic regression | 26 |
+| **2** | `2.adaptation_python_projet` | Transfer learning, three regimes | 14 |
 
-Before talking about LoRA or in-context learning, I compute what the simple method
-gives on the same task. That is the figure my coursework did not compute, and
-without it the others mean nothing.
-
-| File | What I do in it |
-|---|---|
-| `src/donnees.py` | 122 dictionary definitions across 12 semantic classes, a supersense to hypersense hierarchy, a stratified split, a hierarchical distance. |
-| `src/traits.py` | A feature extractor switchable by family, bag of words, first word, length, suffixes. Multinomial logistic regression in NumPy, and three metrics including a hierarchical one. |
-| `tests/test_traits.py` | 26 tests. |
-
-Academic origin. Lab 1 of *Machine Learning 2* (first Master's year), and lab 1 of
-*Machine Learning for NLP 3* (Marie Candito, final year) with Haeeul Hwang, where
-the task was to classify Wiktionary definitions into supersenses, comparing a LoRA
-fine-tune of FlauBERT with in-context learning using Qwen2.5-3B.
+That is **40 tests** in total. Each folder contains everything the previous
+one had, plus one step.
 
 ---
 
-## Running the code
+## Running the latest version
 
 ```bash
-cd 1.adaptation_python_projet
-python -m src.donnees
-python -m src.traits
-python -m tests.test_traits
+cd 2.adaptation_python_projet
+python -m src.transfert
+python -m tests.test_transfert
 ```
-
-NumPy is enough.
-
----
-
-## What I take from this step
-
-**Comparing two modern methods without checking that they beat the simple one is a
-classic methodological gap.** That is what we did. Work that does take the trouble
-to compute the baseline often finds the claimed gap is smaller than it looks.
-
-```
-majority class on the test set : 14.3 %
-uniform random                 :  8.3 %
-```
-
-**Three metrics give three readings of the same model.** Accuracy is dominated by
-frequent classes. Macro F1 punishes a model that ignores rare ones. The
-hierarchical metric tells a near miss from an absurd one.
-
-**The split has to be stratified.** With 8 examples for the `temps` class, a global
-random split can produce a test set with no example of that class at all, and its
-score becomes undefined.
 
 ---
 
 ## What is still open
 
-The learning curve is still rising at 80 examples. It is not the model that
-plateaus, it is the amount of data.
+Frozen representations cost 396 parameters and plateau at 0.279. Full
+fine-tuning costs 24,492 of them to reach 0.407.
 
-I now have the baseline figure my coursework was missing. What I do not have is
-anything to compare it with. Until I have measured a method that reuses knowledge
-acquired elsewhere, I do not know what that 14.3 % is worth.
+Between the two, I know of no intermediate regime.
 
 ---
 
@@ -111,6 +75,8 @@ was wrong or incomplete, I say so and give the correct one.
 expected, I write down what I found.
 
 **The code is commented in French.**
+
+---
 
 ---
 
