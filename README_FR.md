@@ -1,17 +1,17 @@
 # Adapter un modèle sans données ni calcul
 
-La référence à battre, calculée d'abord. Traits et régression logistique, écrits en NumPy.
+Traits, transfert, LoRA, apprentissage en contexte et sélection d'exemples, tous réimplémentés en NumPy.
 
-**Léo Mégret**, Master Linguistique Informatique, Université Paris Cité
+**Léo Mégret** — implémentation, notes techniques en français.  
+**Haeeul Hwang** — documentation anglaise, documentation coréenne, relecture.
 
-> **État du dépôt, version 2.** Je mène ce travail par étapes, chacune dans son
-> propre dossier. Je publie au fur et à mesure plutôt qu'une fois tout terminé.
+> **État du dépôt** — étape 2 sur 5, publiée par Léo Mégret.
 
 ---
 
 ## Pourquoi ce dépôt
 
-En M2, avec Haeeul Hwang, nous avons écrit six lignes de `peft` pour faire un
+En M2, avec Haeeul, nous avons écrit six lignes de `peft` pour faire un
 fine-tuning LoRA. Elles marchaient. Je n'aurais su expliquer aucun de leurs
 arguments.
 
@@ -23,64 +23,61 @@ Ce dépôt est la reprise de ce travail, autour d'une seule question. Comment
 adapter un modèle à une tâche quand on n'a ni beaucoup de données ni beaucoup de
 calcul.
 
-Je commence par ce que notre rendu ne contenait pas, la méthode simple.
+Je commence par ce que notre rendu ne contenait pas : la méthode simple.
 
 ---
 
-## Les versions publiées
+## Les étapes
 
-| | Dossier | Contenu | Tests |
-|---|---|---|---:|
-| **1** | `1.adaptation_python_projet` | La référence à battre, traits et régression logistique | 26 |
-| **2** | `2.adaptation_python_projet` | Apprentissage par transfert, trois régimes | 14 |
+| | Étape | Modules | Tests | Publiée par | Note détaillée (français) |
+|---|---|---|---:|---|---|
+| **1** | La référence à battre : traits et régression logistique | `src/donnees.py`, `src/traits.py` | 26 | Léo | [`traits-et-regression-logistique`](notes/traits-et-regression-logistique.md) |
+| **2** | Apprentissage par transfert : trois régimes, et une leçon de méthode | `src/transfert.py` | 14 | Léo | [`apprentissage-par-transfert`](notes/apprentissage-par-transfert.md) |
 
-Soit **40 tests** au total. Chaque dossier contient tout le contenu du
-précédent, plus une étape.
+**40** tests au total.
 
 ---
 
-## Lancer la dernière version
+## Ce que chaque étape a trouvé
+
+**1. La référence à battre : traits et régression logistique**  
+Le premier mot seul, 70 dimensions, bat un sac de mots complet de 274 dimensions (0,429 contre 0,357). Les définitions de dictionnaire sont structurées : le premier mot est l'hyperonyme.
+
+**2. Apprentissage par transfert : trois régimes, et une leçon de méthode**  
+Le témoin « depuis zéro » atteint 0,379 contre 0,407 pour le fine-tuning complet, avec σ = 0,086 sur un test de 28 exemples. Le tableau ne désigne aucun vainqueur, et nous l'écrivons.
+
+---
+
+## Lancer le code
 
 ```bash
-cd 2.adaptation_python_projet
 python -m src.transfert
+
+python -m tests.test_traits
 python -m tests.test_transfert
 ```
 
 ---
 
-## Ce qui reste ouvert
+## Comment nous travaillons
 
-Les représentations gelées coûtent 396 paramètres et plafonnent à 0,279. Le
-fine-tuning complet en coûte 24 492 pour atteindre 0,407.
+**Rien à télécharger.** Le corpus est écrit dans le code. Tous mes
+notebooks de master commençaient par un `wget` vers un serveur universitaire ou
+un montage de Google Drive ; deux ans plus tard, la moitié ne s'exécutent plus.
 
-Entre les deux, je ne connais aucun régime intermédiaire.
-
----
-
-## Comment je travaille
-
-Quatre règles que je me suis données en commençant, et que je compte tenir sur
-tout le dépôt.
-
-**Rien à télécharger.** Le corpus est écrit dans le code. Mes notebooks de master
-commençaient tous par un `wget` vers un serveur universitaire ou un montage de
-Google Drive. Deux ans plus tard, la moitié ne s'exécutent plus.
-
-**Rien n'est affirmé sans mesure.** Chaque chiffre de ce fichier correspond à une
-commande qu'on peut relancer.
+**Rien n'est affirmé sans mesure.** Chaque chiffre de ce fichier correspond à
+une commande qu'on peut relancer.
 
 **Les erreurs de mes rendus sont citées, pas effacées.** Quand un résultat que
-j'avais rendu en cours était faux ou incomplet, je le dis et je donne le résultat
-correct.
+j'avais rendu était faux ou incomplet, je le dis et je donne le bon.
 
 **Les résultats négatifs restent.** Quand une expérience montre l'inverse de ce
 que j'attendais, j'écris ce que j'ai trouvé.
 
-**Le code est commenté en français.**
+**Le code est commenté en français**, parce que c'est la langue dans laquelle je
+l'ai pensé. La documentation est en anglais, et en coréen quand Haeeul est
+passée dessus.
 
 ---
 
----
-
-*Version anglaise, [README.md](README.md).*
+*English: [README.md](README.md) · [CONTRIBUTORS.md](CONTRIBUTORS.md)*

@@ -1,4 +1,6 @@
-# Version 1, la référence à battre. Traits et régression logistique
+# La référence à battre. Traits et régression logistique
+
+> Étape 1 sur 5 du dépôt.
 
 > **Où j'en suis.** Avant de parler de LoRA ou d'apprentissage en contexte, je
 > calcule ce que donne la méthode de 1990 sur la même tâche. C'est le chiffre que
@@ -6,7 +8,7 @@
 
 ---
 
-## Ce que contient cette version
+## Ce que contient cette étape
 
 | Fichier | Ce que j'y fais |
 |---|---|

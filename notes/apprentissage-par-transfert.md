@@ -1,13 +1,15 @@
-# Version 2, apprentissage par transfert. Trois régimes, et une leçon de méthode
+# Apprentissage par transfert. Trois régimes, et une leçon de méthode
 
-> **Où j'en suis.** La version 1 a montré que le modèle plafonne par manque de
-> données. Le transfert est la réponse. Cette version en mesure trois régimes,
+> Étape 2 sur 5 du dépôt.
+
+> **Où j'en suis.** La étape 1 a montré que le modèle plafonne par manque de
+> données. Le transfert est la réponse. Cette étape en mesure trois régimes,
 > et découvre au passage que sur 28 exemples de test, **aucune comparaison n'est
 > concluante**.
 
 ---
 
-## Nouveautés par rapport à la version 1
+## Nouveautés par rapport à l'étape 1
 
 | Fichier | Ce que j'ajoute |
 |---|---|
